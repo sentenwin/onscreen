@@ -1,0 +1,520 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div class="page-header">
+		<div class="page-header-content">
+			<h1>OnScreen<small>({{ gplus['displayName'] }}'s home screen)</small></h1>
+			<a href="/" class="back-button big page-back"></a>
+		</div>
+	</div>
+	
+    <div class="page-region">
+        <div class="page-region-content">
+            <div class="grid">
+                <div class="row">
+                    <div class="span10">
+						<div class="tiles clearfix">
+							<div class="input-control text" style="width:81%">
+								<input type="text" id="search" onKeydown="Javascript: if (event.keyCode==13) mysearch();"/>
+								<button class="btn-clear" onKeydown="Javascript:document.getElementById('search').value= ''"></button>
+								<button class="btn-search" id="btnSearch"></button>
+							</div>
+							<a name="Social"></a>
+							<h2> Social Sites</h2>
+							<!-- profile pic
+							<a href="#">
+								<div class="tile image">
+									<div class="tile-content">
+										<img style="width: 60px; height:60px; border-radius: 30px; -webkit-border-radius: 150px; -moz-border-radius: 150px;" src={{ gplus['image']['url'] }} alt="">
+									</div>
+								</div>
+							</a> -- End of profile pic -->
+							<!--profile pic -->
+							<a href="/" target="_blank">
+								<div class="tile content bg-color-blue">
+									<div class="tile-content">
+										<img src={{ gplus['image']['url'] }} alt="">
+									</div>
+										<div class="brand">
+										<div class="name">{{ gplus['displayName'] }}</div>
+									</div>
+								</div>
+							</a> <!-- end of profile pic -->							
+							<!-- Gmail tile -->
+							<a href="https://www.gmail.com" target="_blank">
+								<div class="tile icon" style="background:rgb(210,44,46)">
+									<div class="tile-content">
+										<img src="/static/images/gmail.png"/>
+									</div>
+									<div class="brand">
+										<div class="badge">10</div>
+										<div class="name">GMAIL</div>
+									</div>
+								</div>
+							</a> <!-- End of Gmail tile -->
+							
+							<!--facebook tile -->
+							<a href="https://www.facebook.com" target="_blank">
+								<div class="tile icon bg-color-blueDark">
+									<div class="tile-content">
+										<img src="/static/images/Facebook.png" alt="">
+									</div>
+										<div class="brand">
+										<div class="name">Facebook</div>
+									</div>
+								</div>
+							</a> <!-- end of facebook tile -->
+
+							<a href="http://www.linkedin.com/" target="_blank">
+								<div class="tile image bg-color-darken">
+									<div class="tile-content">
+										<img src="/static/images/in.png" alt="">
+									</div>
+										<div class="brand">
+										<div class="name">Linked In</div>
+									</div>
+								</div>
+							</a>
+							
+							<a class='iframe' href="http://news.cnet.com/" target="_blank">
+								<div  class="tile double bg-color-blueDark " data-role="tile-slider" data-param-period="3000">
+									<div class="tile-content">
+										<div id="feedControl"></div>
+									</div>
+									<div class="tile-content">
+										<div id="feedControl1"></div>
+									</div>
+									<div class="brand bg-color-orange">
+									   <span class="text">News</span>
+									</div>
+								</div>
+							</a>
+							
+							<a  href="http://in.yahoo.com" target="_blank">
+								<div class="tile icon bg-color-pinkDark">
+									<div class="tile-content">
+										<img src="/static/images/icon-Yahoo.png" alt="">
+									</div>
+										<div class="brand">
+										<div class="name">Yahoo!!</div>
+									</div>
+								</div>
+							</a>
+							
+							<a class='iframe' href="https://en.wikipedia.org" target="_blank">
+								<div class="tile icon	 bg-color-green">
+									<div class="tile-content">
+										<img src="/static/images/Wapedia.png" alt="">
+									</div>
+										<div class="brand">
+										<div class="name">Wikipedia</div>
+									</div>
+								</div>
+							</a>
+
+							<a  href="https://twitter.com" target="_blank">
+								<div class="tile icon bg-color-teal">
+									<div class="tile-content">
+										<img src="/static/images/Twitter.png" alt="">
+									</div>
+										<div class="brand">
+										<div class="name">Twitter</div>
+									</div>
+								</div>
+							</a>
+							
+							<a class='iframe' href="http://in.msn.com/" target="_blank">
+								<div class="tile icon " style="background:rgb(244,116,33)">
+									<div class="tile-content">
+										<img src="/static/images/MSN.png" alt="">
+									</div>
+										<div class="brand">
+										<div class="name">MSN</div>
+									</div>
+								</div>
+							</a>
+
+							<a  href="https://www.google.com/calendar" target="_blank">
+								<div class="tile double bg-color-green" data-role="tile-slider" data-param-period="3000">
+									<div class="tile-content">
+										<div id="calendarTitle"></div>
+									</div>
+									<div class="tile-content">
+										<div id="events"></div>
+									</div>
+									<div class="brand bg-color-blue">
+										<h3 class="place-right"><script language="javascript">document.write(new Date().toString().substring(0,10) + " " + new Date().getFullYear() )</script></h3>
+									</div>
+								</div>
+							</a>	
+
+							<a href="http://www.youtube.com/" target="_blank">
+								<div class="tile bg-color-redLight icon">
+									<div class="tile-content">
+										<img src="/static/images/YouTube128.png"/>
+									</div>
+									<div class="brand">
+										<span class="name">Youtube</span>
+									</div>
+								</div>
+							</a>
+
+							<a class='iframe' href="https://www.flipkart.com" target="_blank">
+								<div class="tile icon " style="background:rgb(236,187,2)">
+									<div class="tile-content">
+										<img src="/static/images/flipkart.png" alt="">
+									</div>
+										<div class="brand">
+										<div class="name">Flipkart</div>
+									</div>
+								</div>
+							</a>
+
+							<a class='iframe' href="https://www.redbus.in" target="_blank">
+								<div class="tile icon bg-color-blue" id="redbus">
+									<div class="tile-content">
+										<img src="/static/images/redbus.png" alt="">
+									</div>
+										<div class="brand">
+										<div class="name">RedBus</div>
+									</div>
+								</div>
+							</a>
+
+							<a  href="https://www.irctc.co.in" target="_blank">
+								<div class="tile icon bg-color-blueDark">
+									<div class="tile-content">
+										<img src="/static/images/irctc.jpg" alt="">
+									</div>
+										<div class="brand">
+										<div class="name">IRCTC</div>
+									</div>
+								</div>
+							</a>
+
+							<a class='iframe' href="http://www.naukri.com" target="_blank">
+								<div  class="tile double bg-color-magenta " data-role="tile-slider" data-param-period="3000">
+									<div class="tile-content">
+									<div id="feedControl3"></div>
+									
+									</div>
+									<div class="tile-content" style="background:green">
+									<div id="feedControl4"></div>
+									</div>
+									<div class="brand bg-color-yellow" >
+										<div class="name">Job Opening</div>
+									</div>
+
+								</div>
+							</a>		
+
+							<a href="https://picasaweb.google.com/‎" target="_blank">
+								<div class="tile double image-slider" data-role="tile-slider" data-param-direction="left" data-param-period="3000">
+									<div class="tile-content">
+										<img src="/static/images/1.jpg" alt="">
+									</div>
+									<div class="tile-content">
+										<img src="/static/images/2.jpg" alt="">
+									</div>
+									<div class="tile-content">
+										<img src="/static/images/3.jpg" alt="">
+									</div>
+									<div class="tile-content">
+										<img src="/static/images/4.jpg" alt="">
+									</div>
+									<div class="tile-content">
+										<img src="/static/images/5.jpg" alt="">
+									</div>
+									<div class="brand">
+										<span class="name">Pictures</span>
+									</div>								
+								</div>
+							</a>
+							
+						</div>
+		
+						<!-- Second Block -->
+							<div class="tiles clearfix">
+								<br/><br/>
+								<a name="developer"></a>
+								<h2> Developer Sites</h2>
+
+								<a href="https://github.com/sentenwin" target="_blank">
+									<div class="tile icon " style="background:rgb(0,0,0)">								
+										<b class="check"></b>
+										<div class="tile-content">
+											<img src="/static/images/icon-git.png" alt="" />
+										</div>
+										<div class="brand">
+											<span class="name">GIT</span>
+										</div>
+									</div>
+								</a>
+
+								<a class='iframe' href="http://homemadecircuitsandschematics.blogspot.in/" target="_blank">
+									<div class="tile bg-color-blue icon ">
+										<div class="tile-content">
+											<img src="/static/images/icon-hobby.png" alt="" />
+										</div>
+										<div class="brand">
+											<span class="name">Hubby Circuit</span>
+										</div>
+									</div>
+								</a>
+								
+								<a class='iframe' href="http://raspberrywebserver.com/" target="_blank">
+									<div class="tile image">
+										<div class="tile-content">
+											<img src="/static/images/icon-rpi.jpg"/>
+										</div>
+										<div class="brand">
+											<span class="name">Raspberry pi</span>
+										</div>
+									</div>
+								</a>
+
+								<a class='iframe' href="http://playground.arduino.cc/projects/ideas" target="_blank">
+									<div class="tile bg-color-purple icon">
+										<div class="tile-content">
+											<img src="/static/images/icon-arduino.png" alt="" />
+										</div>
+										<div class="brand">
+											<span class="name">Arduino</span>
+										</div>
+									</div>
+								</a>
+								
+								<a href="https://developers.google.com/" target="_blank">
+									<div class="tile icon bg-color-teal">
+										<div class="tile-content">
+											<img src="/static/images/icon-gdev.jpg" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">Google Developer</div>
+										</div>
+									</div>
+								</a>
+												
+								<a href="http://developer.android.com/" target="_blank">
+									<div class="tile icon bg-color-greenLight" >
+										<div class="tile-content">
+											<img src="/static/images/icon-android.png"/>
+										</div>
+										<div class="brand">
+											<div class="name">Android Developer</div>
+										</div>
+									</div>
+								</a>
+								
+								<a href="https://developer.qualcomm.com/" target="_blank">
+									<div class="tile image bg-color-teal">
+										<div class="tile-content">
+											<img src="/static/images/icon-qualcomm.jpg" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">Qualcomm Developer</div>
+										</div>
+									</div>
+								</a>
+												
+								<a href="https://developer.tizen.org/" target="_blank">
+									<div class="tile image bg-color-teal">
+										<div class="tile-content">
+											<img src="/static/images/icon-tizen.jpg" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">Tizen Developer</div>
+										</div>
+									</div>
+								</a>
+						
+								<a href="#Social">
+									<a href="https://developer.mozilla.org" target="_blank">
+									<div class="tile icon bg-color-orangeDark">
+										<div class="tile-content">
+											<img src="/static/images/firefox.png" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">Mozilla Developer</div>
+										</div>
+									</div>
+								</a>
+									
+								<a href="http://developer.ubuntu.com/" target="_blank">
+									<div class="tile icon " style="background:rgb(244,116,33)">
+										<div class="tile-content">
+											<img src="/static/images/icon-ubuntu.png" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">Ubuntu Developer</div>
+										</div>
+									</div>
+								</a>
+
+								<a href="http://developer.yahoo.com/" target="_blank">
+									<div class="tile icon bg-color-pinkDark">
+										<div class="tile-content">
+											<img src="/static/images/icon-Yahoo.png" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">Yahoo Developer</div>
+										</div>
+									</div>
+								</a>	
+								
+								<a href="https://www.dropbox.com/developers" target="_blank">
+									<div class="tile icon bg-color-blue">
+										<div class="tile-content">
+											<img src="/static/images/icon-dropbox.png" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">Dropbox Developer</div>
+										</div>
+									</div>
+								</a>	
+								
+								<a href="http://developers.facebook.com/" target="_blank">
+									<div class="tile icon bg-color-blueDark">
+										<div class="tile-content">
+											<img src="/static/images/Facebook.png" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">Facebook Developer</div>
+										</div>
+									</div>
+								</a>	
+
+								<a href="http://www.html5rocks.com/" target="_blank">
+									<div class="tile icon	 bg-color-green">
+										<div class="tile-content">
+											<img src="/static/images/HTML52.png" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">HTML5 Developer</div>
+										</div>
+									</div>
+								</a>									
+
+								<a href="http://www.developer.com" target="_blank">
+									<div  class="tile double bg-color-magenta " data-role="tile-slider" data-param-period="3000">
+										<div class="tile-content">
+										<div><h2>Developer News</h2> <img style="height:75px; width:75px" class="place-right" src="/static/images/icon-dev.png" alt=""></div>
+										
+										</div>
+										<div class="tile-content" style="background:gray">
+										<div id="feedControl2"></div>
+										</div>
+									</div>
+								</a>
+
+								<a class='iframe' href="http://www.wi-fi.org/" target="_blank">
+									<div class="tile icon bg-color-greenDark">
+										<div class="tile-content">
+											<img src="/static/images/WIFI.png" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">WIFI</div>
+										</div>
+									</div>
+								</a>	
+
+								 <a class='iframe' href="http://gnuradio.org" target="_blank">
+									<div class="tile icon bg-color-blueLight">
+										<div class="tile-content">
+											<img src="/static/images/gnuradio12.png" alt="">
+										</div>
+											<div class="brand">
+											<div class="name fg-color-darken" >GNU Software Defined Radio</div>
+										</div>
+									</div>
+								</a>	
+								<a class='iframe' href="http://www.zigbee.org/" target="_blank">
+									<div class="tile icon bg-color-yellow">
+										<div class="tile-content">
+											<img src="/static/images/zigbee.jpg" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">Zigbee</div>
+										</div>
+									</div>
+								</a>	
+								<a class='iframe' href="http://www.ti.com/lsds/ti/wireless_connectivity/bluetooth_bluetooth-ble/overview.page" target="_blank">
+									<div class="tile icon bg-color-purple">
+										<div class="tile-content">
+											<img src="/static/images/btle.jpg" alt="">
+										</div>
+											<div class="brand">
+											<div class="name">Blue tooth Low Energy</div>
+										</div>
+									</div>
+								</a>	
+							</div>
+							<!-- Developer site end -->
+
+						<!-- Thrid Block -->
+							<div class="tiles clearfix">
+								<br/><br/>
+								<a name="webnotes"></a>
+								<h2> Web Notes</h2>
+								{% for note in notes %}
+
+									
+									<div class="tile double double-vertical ol-transparent bg-color-blue">
+									<button class="command-button primary bg-color-pinkDark"> Title: 
+										{{ note.author }}
+									</button>
+										<div class="nav-bar bg-color-darken" >
+											<div class="nav-bar-inner padding10 ">
+												<ul class="menu place-left">
+													<li><a href="/edit/{{ note.key().id() }}">Edit</a></li>
+													<li><a href="/delete/{{ note.key().id() }}">Delete</a></li>
+												</ul>
+											</div>
+										</div>
+
+
+										<div class="fg-color-darken" > 
+											<textarea readonly class="fg-color-darken" rows="8" cols="40" style="align:center; margin-left:4px;" >{{ note.text }} </textarea>
+										</div>
+										<span class="fg-dark">
+										Priority : {{ note.priority }} <br />
+										Created: {{ note.date.strftime('%Y-%m-%d')  }} <br/>
+										Status: {{ note.status }} 
+											<br />  <span></p>
+									</div>
+								{% endfor %}
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var button= document.getElementById('btnSearch');
+		button.onclick= function(){
+			mysearch();
+		}
+		function mysearch() {
+			var text= document.getElementById('search').value;
+			var keyword=text.toUpperCase();
+			switch (keyword) {
+				case "REDBUS":
+				case "FACEBOOK":
+				case "TWITTER":
+				case "PLUS":
+				case "FLIP":
+				case "FLIPKART":
+				case "YAHOO":
+				case "WIKI":
+				case "IRCTC":
+					window.location.href="#Social";
+					break;
+				default:
+					window.open('https://www.google.co.in/search?q='+text, '_blank');
+					break;
+			}
+			
+		}
+	</script>
+{% endblock content %}
